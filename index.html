@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tea & Coffee Order Form</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<div class="form-container">
+		<h2>Tea & Coffee Order</h2>
+		<form id="orderForm" name="orderForm">
+			<label for="item">Item:</label>
+			<input type="text" id="item" name="item" placeholder="Enter item name">
+
+			<label for="quantity">Item Quantity:</label>
+			<input type="number" id="item-quantity" name="item-quantity" placeholder="Enter quantity">
+
+			<label for="order-date">Order Date:</label>
+			<input type="date" id="order-date" name="order-date" required>
+
+			<label for="others">Others (if any):</label>
+			<input type="text" id="others-if-any" name="others-if-any" placeholder="Enter additional notes">
+
+			<label for="other-quantity">Other Quantity :</label>
+			<input type="number" id="other-quantity" name="other-quantity" placeholder="Enter other quantity">
+
+
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+
+	<script>
+		const scriptURL = 'https://script.google.com/macros/s/AKfycbwCUmRtP4r8uf5qSJEVxlON50gL56uSpYFXzvXa9E1EjlJUDZvX7kuv3ILHJV-DAVTV/exec';
+		const form = document.getElementById('orderForm')
+		form.addEventListener('submit', e => {
+			e.preventDefault()
+			fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+				.then(response => alert("Thank you! Your form is submitted successfully."))
+				.then(() => { window.location.reload(); })
+				.catch(error => console.error('Error!', error.message))
+		})
+	</script>
+</body>
+
+</html>
